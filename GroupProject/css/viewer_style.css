@@ -1,0 +1,84 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+
+
+body{
+    background-color: #031724;
+}
+
+.header-container{
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    /*color:#3B80A8;*/
+    color: #f3f3f3;
+    margin: 5rem 0;
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+#myvideos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 10% 0 10%;
+    width: 80%;
+    overflow: hidden;
+}
+
+.leave-button{
+    background-color: transparent;
+    border: 2px solid #004b74;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 30px;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leave-button:hover{
+    background-color: #063956; 
+    color: #ffffff;
+    border: 2px solid #063956;
+}
+
+
+.function_table{
+    border: 2px solid #e1e1e1;
+    border-radius: 24px;;
+    padding: 20px;
+    width: 90%;
+    margin: 20px 5%;
+}
+
+.function_name{
+    color: #dadada;
+    font-family: Montserrat;
+    font-weight: 900;
+}
+
+.mdc-button{
+    background-color: #3b80a8;
+    border: 2px solid #3b80a8;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    color: #ffffff;
+    margin: 5px 2px;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.mdc-button:hover{
+    background-color: #2e6381; 
+    border: 2px solid #2e6381;
+    color: #ffffff;
+}
+
+

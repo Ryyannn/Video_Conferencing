@@ -1,0 +1,195 @@
+body { 
+
+    margin: 20px; 
+    background: linear-gradient(to bottom, #131920, #071424) !important; 
+    color: #d6caca !important;
+  
+  } 
+  
+   
+  
+  button{ 
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    border: 2px solid #ffffff; 
+    background: transparent; 
+    transition: background 0.5s, color 0.5s; 
+    color: #d6caca; 
+} 
+  
+   
+  
+  button:hover{ 
+  
+    background: #fff6f6; 
+  
+    color: #252525 
+  
+  } 
+
+  .nav-link{
+    margin: 0 10px;
+  }
+
+  .try-button{
+    background-color: #d6caca;
+    border: 2px solid #d6caca;
+    border-radius: 24px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+
+  .try-button:hover{
+    border: 2px solid #c7bcbc;
+
+    background-color: #c7bcbc;
+  }
+
+  .try-button a{
+    color: #4e4e4e ;
+    transition: color 0.3s ease;
+  }
+
+  .try-button a:hover{
+    color: #3a3a3a ;
+  }
+
+
+  
+   
+  
+  .Hero{ 
+  
+    padding: 200px 100px; 
+  
+    text-align: center; 
+  
+    color: #d6caca; 
+  
+  } 
+  
+   
+  
+  .Hero h1{ 
+  
+    font-size: 50px; 
+    font-family: Poppins, sans-serif;
+    margin: 30px 0px; 
+  
+  } 
+  
+   
+  
+  .Hero p{ 
+    font-family: Noto Sans, sans-serif;
+    margin: 30px 0px; 
+  
+  } 
+  
+   
+  
+   
+  
+  .Hero-button{ 
+    border: none;
+    border-radius: 50%;
+    height: 65px;
+    width: 65px;
+    margin: 30px 0px;   
+  
+  }
+
+  
+  .Description{
+    margin-top: 130px;
+    font-family: Noto Sans, sans-serif;
+  }
+
+  .Description h3{
+    font-weight: bold;
+  }
+
+  .features-header{
+    font-family: Poppins, sans-serif;
+    margin: 70px 0px;
+    font-size: 60px;
+  }
+
+  .features-item{
+    margin: 0px 0px 80px 0px;
+  }
+
+  .images{
+    width: 100%; 
+    height: 60%; 
+    object-fit: contain"
+  }
+
+  .items{
+    margin: 20px 0px;
+    padding: 40px 20px; 
+
+  }
+
+  .card{
+    font-family: Noto Sans, sans-serif;
+    padding: 60px 20px;
+    color: #d6caca !important;
+    background-color: #2b2f36 !important;
+    border:2px solid #9b8484 !important;
+    text-align: center;
+    box-shadow: 3px 3px 4px #5f5454;
+    border-radius: 24px !important;
+  }
+
+  .card h3{
+    font-weight: bold;
+  }
+
+  .Waitlist{
+    margin: 50px auto;
+
+  }
+
+  .waitlist-container{
+    border: 2px solid #777777;
+    border-radius: 24px;
+    padding: 120px 0;
+  }
+
+  .Waitlist-header{
+    font-family: Poppins, sans-serif;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
+
+  .waitlist-item{
+    text-align: center;
+  }
+
+  .waitlist-item-text{
+    font-family: Noto Sans, sans-serif;
+    margin-bottom: 40px;
+  }
+
+  .waitlist-item-button{
+    font-family: Noto Sans, sans-serif;
+    font-size: 20px;
+    color: #252525;
+    border-radius: 24px;
+    padding: 10px 50px;
+    border-color: #e7cccc;
+    background-color: #e7cccc;
+    transition: border-color 0.5s,  background-color 0.5s, color 0.5s;
+  }
+
+  .waitlist-item-button:hover{
+    color: #dab2b2;
+    border-color: #dab2b2;
+    background-color: #071424;
+  }
+
+  .span-text{
+    font-size: 11px;
+    color: #7e7e78;
+  }

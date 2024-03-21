@@ -1,0 +1,163 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presenter</title>
+        <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <script type="text/javascript" src="https://cdn.metered.ca/sdk/video/1.4.5/sdk.min.js"></script>
+
+    <script src="js\variable.js"></script>
+
+    <link rel="stylesheet" href="css\style.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1 class="header">Video Monitoring</h1>
+        </div>
+        <div class="row">
+            <div class="column column-box">
+                <h2 class="box-header">Controls</h2>
+                <hr>
+                <div class="row">
+                    <div class="column">
+                        <button id="share-camera" class="function-button">Camera</button>
+                        <button id="share-mic" class="function-button">Microphone</button>
+                        <button id="share-screen" class="function-button">Screen</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label class="box-header" for="camera">Camera:</label>
+                        <select name="camera" id="camera-list" class="select-list">
+                            <option class='option-text' value=""></option>
+                        </select>
+                    </div>
+
+                    <div class="column">
+                        <label class="box-header" for="mic" >Mic:</label>
+                        <select name="mic" id="mic-list" class="select-list">
+                            <option class='option-text' value=""></option>
+                        </select>
+                    </div>
+
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: 20px">
+                    <button id="end-broadcast" class="leave-button">
+                        End
+                    </button>
+                    <button id="start-broadcast" class="broadcast-button">
+                        Start Broadcast
+                    </button>
+                </div>
+
+            </div>
+            <div class="column column-box">
+                <h2 class="box-header">Preview</h2>
+                <hr>
+                <video style="max-width: 400px" id="video" src="" autoplay muted></video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        roomName = localStorage.getItem('roomName');
+        const ROOM_URL = "eie4428.metered.live/" + roomName;
+        console.log(ROOM_URL);
+        
+
+        const meeting = new Metered.Meeting();
+        async function joinMeeting() {
+            const response = await meeting.join({
+                roomURL: ROOM_URL
+            });
+
+            const microphones  = await meeting.listAudioInputDevices();
+            const cameras = await meeting.listVideoInputDevices();
+
+            let cameraList = [];
+            for (let camera of cameras) {
+                cameraList.push(`<option value=${camera.deviceId}>${camera.label}</option>`);
+            }
+            let micList = [];
+            for (let mic of microphones) {
+                micList.push(`<option value=${mic.deviceId}>${mic.label}</option>`);
+            }
+            document.getElementById("camera-list").innerHTML = cameraList.join("");
+            document.getElementById("mic-list").innerHTML = micList.join("");
+            console.log("Joined room")
+        }
+
+        document.querySelector("#start-broadcast").addEventListener("click", joinMeeting);
+
+
+
+        async function selectCamera(event) {
+            await meeting.chooseVideoInputDevice(event.target.value);
+        }
+        
+        async function selectMic(event) {
+            await meeting.chooseAudioInputDevice(event.target.value);
+        }
+
+        async function shareCamera() {
+            await meeting.startVideo();
+        }
+        
+        async function shareMic() {
+            await meeting.startAudio();
+        }
+        
+        async function shareScreen() {
+            await meeting.startScreenShare();
+        }
+
+        document.querySelector("#share-camera").addEventListener("click", shareCamera);
+        document.querySelector("#share-mic").addEventListener("click", shareMic);
+        document.querySelector("#share-screen").addEventListener("click", shareScreen);
+        document.querySelector("#camera-list").addEventListener("change", selectCamera);
+        document.querySelector("#mic-list").addEventListener("change", selectMic);
+
+
+        meeting.on("localTrackStarted", function(trackItem) {
+            if (trackItem.type === "video") {
+                const stream = new MediaStream();
+                stream.addTrack(trackItem.track);
+                document.querySelector("#video").srcObject = stream;
+            }
+        });
+
+        meeting.on("localTrackUpdated", function(trackItem) {
+            if (trackItem.type === "video") {
+                const stream = new MediaStream();
+                stream.addTrack(trackItem.track);
+                document.querySelector("#video").srcObject = stream;
+            }
+        });
+
+        function quitmeeting(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            
+            //console.log(roomName);
+            // Redirect to another HTML file
+            window.location.href = "quitrm.html";
+        }
+
+        document.querySelector("#end-broadcast").addEventListener("click", quitmeeting);
+
+
+
+    </script>
+    
+</body>
+</html>

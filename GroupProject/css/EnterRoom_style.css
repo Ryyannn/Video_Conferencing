@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+
+body{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card{
+    width: 50% !important;
+    margin: 50% auto;
+    background: transparent;
+    border: 1px solid #f2f2f2;
+    border-radius: 24px;
+    box-shadow: 5px 3px 3px#0d81c5;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 0 !important;
+    padding: 8rem 4rem;
+
+}
+
+.form-header{
+    color: #f3f3f3;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.name{
+    height: 10%;
+    flex: 1 0 5rem;
+    color: #f2f2f2;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 3px;;
+    text-align: center;
+    border-radius: 18px !important;
+    background: transparent !important;
+
+}
+
+.name:focus, .name:target, select{
+    border-color: #0d81c5 !important;
+    background: transparent;
+}
+
+.form_button{
+    flex: 1 0 5rem;
+    background-color: #0d81c5;
+    border: 2px solid #0d81c5;
+    border-radius: 18px !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    font-size: 15px;
+    letter-spacing: 3px;;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.form_button:hover{
+    background-color: #0b669b; 
+    color: #ffffff;
+    border: 2px solid #0b669b;
+}

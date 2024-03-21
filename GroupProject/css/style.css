@@ -1,0 +1,110 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+
+
+body{
+    height: 200px !important;
+    background-color: #031724;
+}
+
+.header-container{
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    /*color:#3B80A8;*/
+    color: #f3f3f3;
+    margin: 5rem 0;
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+
+.column-box{
+    border: 1.5px solid #dadada;
+    border-radius: 24px;
+    margin: 20px;
+    padding: 30px 30px !important;
+}
+
+.box-header{
+    color: #dadada;
+    font-family: Montserrat;
+    font-weight: 900;
+}
+
+
+.broadcast-button{
+    background-color: #0d81c5;
+    border: 2px solid #0d81c5;
+    border-radius: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    letter-spacing: 3px;;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+}
+
+.broadcast-button:hover{
+    background-color: #0b669b; 
+    color: #ffffff;
+    border: 2px solid #0b669b;
+}
+
+.leave-button{
+    background-color: transparent;
+    border: 2px solid #004b74;
+    border-radius: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    letter-spacing: 3px;;
+    margin-right: 10px;;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+}
+
+.leave-button:hover{
+    background-color: #063956; 
+    color: #ffffff;
+    border: 2px solid #063956;
+}
+
+.function-button{
+    background-color: #3b80a8;
+    border: 2px solid #3b80a8;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    letter-spacing: 3px;;
+    color: #ffffff;
+    min-width: 31%;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+
+.function-button:hover{
+    background-color: #2e6381; 
+    border: 2px solid #2e6381;
+    color: #ffffff;
+}
+
+.select-list{
+    font-family: 'Lato', sans-serif;
+    color: #f2f2f2;
+
+}
+
+.select-list:focus{
+    border: 1px solid #2e6381;
+}
+
+.option-text{
+    background: transparent !important;
+    border: 1px solid #2e6381;
+    color: #2e6381;
+}
+
+

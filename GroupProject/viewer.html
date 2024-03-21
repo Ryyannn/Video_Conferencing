@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewer</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <link rel="stylesheet" href="css\viewer_style.css">
+
+    <script type="text/javascript" src="https://cdn.metered.ca/sdk/video/1.4.5/sdk.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
+
+    <script src="https://kit.fontawesome.com/41b66e61a4.js" crossorigin="anonymous"></script>
+
+    <script src="js\variable.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container" style="margin: 0 !important; max-width: none;">
+        <div class="header-container">
+            <h1 class="header">Video Monitoring</h1>
+        </div>
+        <div style="">
+            <div class="video-container" id="myvideos">
+                <table style="margin-bottom: 0;">
+                    <tr>
+                        <td style="align-items: center; border-bottom: none;">
+                            <div id="video-container">
+                                <video style="width: 100%;" id="video" src="" autoplay muted controls></video>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <button id="end-broadcast" class="leave-button" onclick="quitmeeting()">
+                <i class="fa fa-sign-out fa-2xl" aria-hidden="true"></i>
+            </button>
+
+              
+              
+
+            <table class="function_table">
+                <tr>
+                    <td class="function_name" style="width: 30%; text-align:center;">Reset: </td>
+                    <td><button class="mdc-button mdc-button--raised " id="OriginalBtn1">
+                            <span class="mdc-button__label">Reset</span>
+                        </button></td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Mirror: </td>
+                    <td> <button class="mdc-button mdc-button--raised " id="MirrorBtn1">
+                            <span class="mdc-button__label">Mirror</span>
+                        </button></td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Rotate Left: </td>
+                    <td>
+    
+                        <button class="mdc-button mdc-button--raised" id="RotateLeft0">
+                            <span class="mdc-button__label">Rotate Left 15`</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="RotateLeft1">
+                            <span class="mdc-button__label">Rotate Left 45`</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="RotateLeft2">
+                            <span class="mdc-button__label">Rotate Left 90`</span>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Rotate Right: </td>
+                    <td>
+                        <button class="mdc-button mdc-button--raised" id="RotateRight0">
+                            <span class="mdc-button__label">Rotate Right 15`</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="RotateRight1">
+                            <span class="mdc-button__label">Rotate Right 45`</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="RotateRight2">
+                            <span class="mdc-button__label">Rotate Right 90`</span>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Zoom in: </td>
+                    <td>
+                        <button class="mdc-button mdc-button--raised" id="Zoomin1">
+                            <span class="mdc-button__label">Zoom + (5%)</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="Zoomin2">
+                            <span class="mdc-button__label">Zoom + (10%)</span>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Zoom out: </td>
+                    <td>
+                        <button class="mdc-button mdc-button--raised" id="Zoomout1">
+                            <span class="mdc-button__label">Zoom - (5%)</span>
+                        </button>
+    
+                        <button class="mdc-button mdc-button--raised" id="Zoomout2">
+                            <span class="mdc-button__label">Zoom - (10%)</span>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Mute: </td>
+                    <td>
+                        <button class="mdc-button mdc-button--raised" id="MuteBtn">
+                            <span class="mdc-button__label">Mute</span>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="function_name" style="text-align: center;">Capture: </td>
+                    <td> <button class="mdc-button mdc-button--raised" id="CaptureBtn">
+                            <span class="mdc-button__label">Capture</span>
+                        </button>
+                    </td>
+                </tr>
+                
+            </table>
+            
+        </div>
+
+
+    </div>
+
+    <script>
+        roomName = localStorage.getItem('roomName');
+        const ROOM_URL = "eie4428.metered.live/" + roomName;
+
+        const meeting = new Metered.Meeting();
+        async function joinMeeting() {
+            const response = await meeting.join({
+                roomURL: ROOM_URL
+            });
+            console.log("Joined room")
+        }
+        joinMeeting();
+
+        let stream = new MediaStream();
+        meeting.on("remoteTrackStarted", function (remoteTrack) {
+
+            if (remoteTrack.type === "video") {
+                stream.getVideoTracks().forEach((track) => {
+                    stream.removeTrack(track);
+                });
+                stream.addTrack(remoteTrack.track);
+            }
+
+            if (remoteTrack.type === "audio") {
+                stream.getAudioTracks().forEach((track) => {
+                    stream.removeTrack(track);
+                });
+                stream.addTrack(remoteTrack.track);
+            }
+            document.getElementById("video").srcObject = stream;
+        });
+
+        
+        document.querySelector('#CaptureBtn').addEventListener('click', captureVideo);
+        console.log("aosifhoiashfoiashio");
+        
+
+        document.querySelector('#OriginalBtn1').addEventListener('click', original1);
+
+        document.querySelector('#MirrorBtn1').addEventListener('click', mirror1);
+
+        document.querySelector('#RotateLeft2').addEventListener('click', rleft2);
+        document.querySelector('#RotateRight2').addEventListener('click', rright2);
+        document.querySelector('#RotateLeft1').addEventListener('click', rleft1);
+        document.querySelector('#RotateRight1').addEventListener('click', rright1);
+        document.querySelector('#RotateLeft0').addEventListener('click', rleft0);
+        document.querySelector('#RotateRight0').addEventListener('click', rright0);
+
+        document.querySelector('#Zoomin1').addEventListener('click', zoomin1);
+        document.querySelector('#Zoomout1').addEventListener('click', zoomout1);
+        document.querySelector('#Zoomin2').addEventListener('click', zoomin2);
+        document.querySelector('#Zoomout2').addEventListener('click', zoomout2);
+
+        document.querySelector('#MuteBtn').addEventListener('click', mute);
+        
+        //document.getElementById("video").srcObject.muted = false; 
+        //muteBtn.innerText = 'mute'; 
+
+        function original1() {
+            const videoElement = document.querySelector('#video'); 
+            videoElement.style.transform = '';
+            console.log('Transformations reset successfully.');
+        }
+
+        function mirror1() {
+                const videoTracks = stream.getVideoTracks();
+                if (videoTracks.length > 0) {
+                    const track = videoTracks[0];
+                    const settings = track.getSettings();
+                    track.applyConstraints({ ...settings, facingMode: 'user' })
+                        .then(() => {
+                            const videoElement = document.querySelector('#video');
+                            videoElement.style.transform = 'scaleX(-1) ';
+                            console.log('Remote camera mirrored successfully.');
+                        })
+                        .catch(error => {
+                            console.error('Error mirroring remote camera:', error);
+                        });
+                }
+            
+        }
+
+        function rleft2() {
+            const videoElement = document.querySelector('#video');
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(90deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated left 90 degrees.');
+        }
+
+        function rright2() {
+            const videoElement = document.querySelector('#video'); 
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(-90deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated right 90 degrees.');
+        }
+
+        function rleft1() {
+            const videoElement = document.querySelector('#video'); 
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(45deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated left 45 degrees.');
+        }
+
+        function rright1() {
+            const videoElement = document.querySelector('#video'); 
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(-45deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated right 45 degrees.');
+        }
+
+        function rleft0() {
+            const videoElement = document.querySelector('#video'); 
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(15deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated left 15 degrees.');
+        }
+
+        function rright0() {
+            const videoElement = document.querySelector('#video'); 
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `rotate(-15deg) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video rotated right 15 degrees.');
+        }
+
+        function zoomin1() {
+            const videoElement = document.querySelector('#video');
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `scale(1.05) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video scaled up.');
+        }
+        function zoomout1() {
+            const videoElement = document.querySelector('#video');
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `scale(0.95) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video scaled up.');
+        }
+
+        function zoomin2() {
+            const videoElement = document.querySelector('#video');
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `scale(1.1) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video scaled up.');
+        }
+
+        function zoomout2() {
+            const videoElement = document.querySelector('#video');
+            const currentTransform = videoElement.style.transform || '';
+            const newTransform = `scale(0.90) ${currentTransform}`;
+            videoElement.style.transform = newTransform;
+            console.log('Video scaled up.');
+        }
+
+        function captureVideo() {
+            console.log("oishafo");
+            const videoElement = document.querySelector('#video');
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+
+
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            const capturedImage = canvas.toDataURL('image/png');
+
+
+            const downloadLink = document.createElement('a');
+            downloadLink.href = capturedImage;
+            downloadLink.download = 'captured_image.png'; // Specify the file name
+
+            downloadLink.click();
+        }
+
+        function mute() {
+            const video = document.getElementById('video');
+            const muteBtn = document.getElementById('MuteBtn');
+            if (video.muted) {
+                video.muted = false;
+                MuteBtn.innerText = 'mute';
+            } else {
+                video.muted = true;
+                MuteBtn.innerText = 'unmute';
+            }
+        }
+
+        function quitmeeting(event) {
+            //event.preventDefault(); 
+            // Prevent the default form submission behavior
+            
+            //console.log(roomName);
+            // Redirect to another HTML file
+            window.location.href = "quitrm.html";
+        }
+
+        document.querySelector("#end-broadcast").addEventListener("click", quitmeeting);
+
+
+    </script>
+</body>
+
+</html>
